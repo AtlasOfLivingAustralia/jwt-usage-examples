@@ -1,5 +1,5 @@
 ## Protected API Usage with Token Generation and Refresh
-A simple example script showing JWT token usage and refresh based on a provided JSON file containing the response from an initial JWT token creation. 
+Example scripts showing JWT token usage and refresh based on a user provided JSON file containing the response from an initial JWT token creation e.g. `keys_example.json`.
 
 The script will attempt to make a request to a protected ALA API. If the token in the JSON file is not expired, it will send the token with the request. If the token has expired,
 
@@ -10,4 +10,4 @@ The token refresh operation described can be successfully run regardless of whet
 
 ### Python
 Use command token_refresh -h for help. 
-Example usage: `python3 generate_token.py --file ./keys.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
+Example usage: `python3 generate_token.py --file ./keys_exmaple.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
