@@ -1,0 +1,8 @@
+{
+    "access_token": "<<access token>>",
+    "refresh_token": "<<refresh token>>",
+    "scope": "openid email roles ala",
+    "client_id": "<<biocollect client id>>",
+    "client_secret": "<<biocollect client secret>>",
+    "token_url": "https://auth-test.ala.org.au/cas/oidc/oidcAccessToken"
+}
