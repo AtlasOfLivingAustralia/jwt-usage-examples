@@ -1,5 +1,6 @@
 // Groovy Rest Client.
-// > update config.json
+// > update user generated token file - keys_exmaple.json or add a new file.
+// > update config - config.json if required
 // > export PATH=$PATH:<<path to groovy folder>>/groovy-2.4.7/bin
 // > cd <<path to this script>>
 // > groovy RestClient.groovy
@@ -38,6 +39,7 @@ def values = []
 FormulaEvaluator evaluator
 
 def keys = read_token_file()
+def config = read_config_file()
 
 println("Reading ${xlsx} file")
 
@@ -180,7 +182,7 @@ Paths.get(xlsx).withInputStream { input ->
                 //check site
 
                 def siteCheckNameConnection = new URL("${SERVER_URL}${SITE_LIST}?id=${PROJECT_ACTIVITY_ID}&entityType=projectActivity").openConnection() as HttpURLConnection
-                keys = get_token(keys)
+                keys = get_token(config, keys)
                 siteCheckNameConnection.setRequestProperty("Authorization","Bearer "+ keys.access_token)
                 siteCheckNameConnection.setRequestProperty('Content-Type', 'application/json;charset=utf-8')
                 siteCheckNameConnection.setRequestMethod("GET")
@@ -289,7 +291,7 @@ Paths.get(xlsx).withInputStream { input ->
             def connection = new URL("${APIG_URL}${ADD_NEW_ACTIVITY_URL}").openConnection() as HttpURLConnection
 
             // set some headers
-            keys = get_token(keys)
+            keys = get_token(config, keys)
             connection.setRequestProperty("Authorization","Bearer "+ keys.access_token);
             connection.setRequestProperty('Content-Type', 'application/json;charset=utf-8')
             connection.setRequestMethod("POST")
@@ -324,34 +326,43 @@ public static double farenheitToCelcius(double farenheit){
     return ((5.0/9.0)*(farenheit - 32)).round(2)
 }
 
-public get_token(keys) {
+public get_token(config, keys) {
 //    if expired regenerate, else just return the access_token
     def decodedJWT = JWT.decode(keys.access_token)
     if( decodedJWT.getExpiresAt().before(new Date())) {
 //        regenerate token
         println("Current token has expired. Refreshing token...")
-        regenerate_token(keys)
+        regenerate_token(config, keys)
     }
     return keys
 }
 
 public read_token_file(){
 
-    String jsonStr = new File('../config.json').text
+    String jsonStr = new File('../keys_exmaple.json').text
     def jsonSlurper = new JsonSlurper()
     def keys = jsonSlurper.parseText(jsonStr)
 
     return keys
 }
 
-public regenerate_token(keys) {
+public read_config_file(){
 
-    String urlParameters  = "refresh_token=${keys.refresh_token}&grant_type=refresh_token&scope=${keys.scope}"
+    String jsonStr = new File('./config.json').text
+    def jsonSlurper = new JsonSlurper()
+    def config = jsonSlurper.parseText(jsonStr)
+
+    return config
+}
+
+public regenerate_token(config, keys) {
+
+    String urlParameters  = "refresh_token=${keys.refresh_token}&grant_type=refresh_token&scope=${config.scope}"
     def postData = urlParameters.getBytes('utf-8')
 
     def connection = new URL(keys.token_url).openConnection() as HttpURLConnection
     // set some headers
-    connection.setRequestProperty("Authorization","Basic "+ Base64.encoder.encodeToString((keys.client_id + ":" + keys.client_secret).bytes))
+    connection.setRequestProperty("Authorization","Basic "+ Base64.encoder.encodeToString((config.client_id + ":" + config.client_secret).bytes))
     connection.setRequestProperty('Content-Type', 'application/x-www-form-urlencoded')
     connection.setRequestMethod("POST")
     connection.setDoOutput(true)

@@ -10,4 +10,6 @@ The token refresh operation described can be successfully run regardless of whet
 
 ### Python
 Use command token_refresh -h for help. 
-Example usage: `python3 generate_token.py --file ./keys_exmaple.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
+Example usage : `python3 python/generate_token.py --file ./keys_exmaple.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
+
+### Groovy
