@@ -15,7 +15,7 @@ def main():
     read_token_file(filepath)
 
     # usage example of access token with a protected ala api
-    biocollect_search(token_config)
+    api_example_request(token_config)
 
 def parse_input():
 
@@ -49,7 +49,6 @@ def get_token(token_config):
         # regenerate token and update token_obj
         print("Current token has expired. Refreshing token...")
         regenerate_token(token_config)
-        print(token_obj["access_token"])
     return token_obj["access_token"]
 
 # regenerate token, return new token and update token_obj
@@ -66,13 +65,16 @@ def regenerate_token(token_config):
         print("Unable to refresh access token. ", r.status_code)
 
 
-def biocollect_search(token_config):
+def api_example_request(token_config):
     url = "https://apis.test.ala.org.au/surveys/ws/project/search?hub=ala&max=20&offset=0&isCitizenScience=false&isWorks=false&isBiologicalScience=false&isWorldWide=false&isUserPage=false&mobile=false&flimit=15"
     # get the JWT
     jwt = get_token(token_config)
     headers = {'user-agent': 'token-refresh/0.1.1', 'Authorization': 'Bearer {0}'.format(jwt)}
     r = requests.get(url, headers=headers)
-    print(r.status_code, "\n", r.json())
+    if r.ok:
+        print(r.status_code, r.text)
+    else:
+        print("Error encountered during request ", r.status_code)
 
 
 if __name__ == '__main__':
