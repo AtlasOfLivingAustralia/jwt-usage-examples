@@ -66,7 +66,7 @@ def regenerate_token(token_config):
 
 
 def api_example_request(token_config):
-    url = "https://apis.test.ala.org.au/surveys/ws/project/search?hub=ala&max=20&offset=0&isCitizenScience=false&isWorks=false&isBiologicalScience=false&isWorldWide=false&isUserPage=false&mobile=false&flimit=15"
+    url = "https://api.test.ala.org.au/surveys/ws/project/search?hub=ala&max=20&offset=0&isCitizenScience=false&isWorks=false&isBiologicalScience=false&isWorldWide=false&isUserPage=false&mobile=false&flimit=15"
     # get the JWT
     jwt = get_token(token_config)
     headers = {'user-agent': 'token-refresh/0.1.1', 'Authorization': 'Bearer {0}'.format(jwt)}
