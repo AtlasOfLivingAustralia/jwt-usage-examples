@@ -6,8 +6,8 @@ library(httr)
 library(jsonlite)
 
 endpoint <- oauth_endpoint(
-  authorize = "https://auth-secure-auth-dev.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize",
-  access = "https://auth-secure-auth-dev.auth.ap-southeast-2.amazoncognito.com/oauth2/token"
+  authorize = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize",
+  access = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token"
 )
 app <- oauth_app(
   "galah",
