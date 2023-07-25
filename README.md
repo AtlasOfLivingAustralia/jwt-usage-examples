@@ -11,9 +11,9 @@ The token refresh operation described can be successfully run regardless of whet
 
 ### Python
 Use command token_refresh -h for help. 
-Example usage CAS Prod: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
-Example usage CAS Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
-Example usage Cognito Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token --clientId replaceMe --clientSecret replaceMe`
-Example usage Cognito Test without client secret: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token --clientId replaceMe`
+ - Example usage CAS Prod: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
+ - Example usage CAS Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
+ - Example usage Cognito Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token --clientId replaceMe --clientSecret replaceMe`
+ - Example usage Cognito Test without client secret: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token --clientId replaceMe`
 
 ### Groovy
