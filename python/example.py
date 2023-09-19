@@ -26,7 +26,7 @@ app.secret_key = 'your_secret_key'  # Change this to a strong, secret key
 # OAuth2 configuration
 authorize_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize"
 token_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token"
-client_id = "51gads0veaglh0ksbikt3bom1m"
+client_id = "<<Client Id>>"
 redirect_uri = "http://localhost:5000/callback"  # Update this to your redirect URI
 home_uri="http://localhost:5000"
 
