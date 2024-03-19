@@ -11,10 +11,11 @@ The token refresh operation described can be successfully run regardless of whet
 
 ### Python
 
-There are two example scenarios:
+There are three example scenarios:
 1. Example of using `Authorization_code` grant type -  See `example.py`
        Note: Please remember to set up callback/redirect urls properly.
 2. Example of refreshing the existing access token when expired - See `token_refresh.py`
+3. Example of using `Client_credentials` grant type - See `Client_credential_example/token_refresh.py`
 
 Use command token_refresh -h for help. 
  - Example usage CAS Prod: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`

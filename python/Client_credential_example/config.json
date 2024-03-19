@@ -1,0 +1,7 @@
+{
+    "client_id": "<<>>",
+    "client_secret": "<<>>",
+    "scope": "openid email roles profile",
+    "grant_type": "client_credentials",
+    "token_url": "<<>>"
+}
