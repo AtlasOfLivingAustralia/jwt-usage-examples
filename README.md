@@ -10,6 +10,12 @@ The script will attempt to make a request to a protected ALA API. If the token i
 The token refresh operation described can be successfully run regardless of whether the initial token was generated using just the simple Client Credentials or Client Credential AND User credentials e.g. Authorization Code Flow, Implicit Flow, Password Credentials etc. In both cases, no user credentials is required for token refresh  - only the `clientId`, and optionally `clientSecret` is required. If the Client App was registered without `clientSecret`, it is not required. 
 
 ### Python
+
+There are two example scenarios:
+1. Example of using `Authorization_code` grant type -  See `example.py`
+       Note: Please remember to set up callback/redirect urls properly.
+2. Example of refreshing the existing access token when expired - See `token_refresh.py`
+
 Use command token_refresh -h for help. 
  - Example usage CAS Prod: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
  - Example usage CAS Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
