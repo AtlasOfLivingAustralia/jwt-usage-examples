@@ -1,5 +1,5 @@
 // Groovy Rest Client.
-// > update user generated token file - keys_exmaple.json or add a new file.
+// > update user generated token file - keys_example.json or add a new file.
 // > update config - config.json if required
 // > export PATH=$PATH:<<path to groovy folder>>/groovy-2.4.7/bin
 // > cd <<path to this script>>
@@ -339,7 +339,7 @@ public get_token(config, keys) {
 
 public read_token_file(){
 
-    String jsonStr = new File('../keys_exmaple.json').text
+    String jsonStr = new File('../keys_example.json').text
     def jsonSlurper = new JsonSlurper()
     def keys = jsonSlurper.parseText(jsonStr)
 
