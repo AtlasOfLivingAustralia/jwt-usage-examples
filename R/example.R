@@ -35,5 +35,8 @@ string1 <- "Bearer"
 string2 <- access_token
 header <- paste(string1, string2)
 
-request <- GET(api, add_headers("x-api-key" = "<<Gateway API key>>", "Accept"= "application/json", Authorization = header))
+response <- GET("https://api.test.ala.org.au/common/api/getApikey", add_headers(Authorization = header))
+apikey <- content(response, type="text", encoding="UTF-8")
+
+request <- GET(api, add_headers("x-api-key" = apikey, "Accept"= "application/json", Authorization = header))
 content(request)
