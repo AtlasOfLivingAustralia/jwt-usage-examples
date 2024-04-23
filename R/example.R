@@ -40,3 +40,4 @@ apikey <- content(response, type="text", encoding="UTF-8")
 
 request <- GET(api, add_headers("x-api-key" = apikey, "Accept"= "application/json", Authorization = header))
 content(request)
+print(content(request))
