@@ -38,6 +38,5 @@ header <- paste(string1, string2)
 response <- GET("https://api.test.ala.org.au/common/api/getApikey", add_headers(Authorization = header))
 apikey <- content(response, type="text", encoding="UTF-8")
 
-request <- GET(api, add_headers("x-api-key" = apikey, "Accept"= "application/json", Authorization = header))
-content(request)
-print(content(request))
+api_response <- GET(api, add_headers("x-api-key" = apikey, "Accept"= "application/json", Authorization = header))
+print(content(api_response))
