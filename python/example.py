@@ -19,8 +19,15 @@ authorize_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth
 token_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token"
 logout_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/logout"
 
+# For non cognito systems (doublecheck client_secret in callback param too)
+#
+# authorize_url = "https://auth.l-a.site/cas/oidc/oidcAuthorize"
+# token_url = "https://auth.l-a.site/oidcAccessToken"
+# logout_url = "https://auth.l-a.site/cas/oidc/logout"
+
 client_id = "" # Replace this with your_public_clientid
 app.secret_key = 'your_secret_key'  # Replace with yoursecret key - Not required for Public Client (Client-side Application)
+
 redirect_uri = "http://localhost:8080/callback"  # Replace with your redirect URI
 home_uri = "http://localhost:8080"
 logout_endpoint = "http://localhost:8080/callback"  # Replace with your redirect URI
@@ -112,6 +119,8 @@ def callback():
             'grant_type': 'authorization_code',
             'code': code,
             'client_id': client_id,
+            # Add this if you are using client_secret_basic authentication
+            # 'client_secret': app.secret_key,
             'redirect_uri': redirect_uri,
         }
         logger.info('**********Authentication in progress**************')
