@@ -1,26 +1,43 @@
 ## Protected API Usage with Token Generation and Refresh
-Example scripts showing JWT token usage and refresh based on a user provided JSON file containing the response from an initial JWT token creation e.g. `keys_example.json`.
+### OIDC tokens
+OpenID Connect (OIDC) is a standard way for an application to prove “who is calling” when accessing a protected API. Instead of sending a username/password to every API, the application first gets a token from an Identity Provider (the login system). The API then accepts requests only when a valid token is included.
 
-The script will attempt to make a request to a protected ALA API. If the token in the JSON file is not expired, it will send the token with the request. If the token has expired,
+A token is like a short-lived digital pass. Tokens usually expire (often in minutes), so systems either:
+* Get a new token again, or
+* Refresh the token using a “refresh token” (when allowed).
 
-1. New token will be generated against the tokenUrl using the `refresh_token` and `scope` from the JSON file along with  `clientId`, `clientSecret` supplied in the CLI. If the Client App was registered without `clientSecret`, it is not required. 
+### The main token types
+1) Access Token (most important for API calls)
 
-2. New token will be kept in memory and used for subsequent request and will again if updated upon expiry.
+This is what you send to the API (usually in an Authorization: Bearer ... header).
+   It is short-lived for safety.
+   If it’s expired, the API will reject the call (e.g., 401 Unauthorized).
+2) Refresh Token (used to renew access without asking the user again)
 
-The token refresh operation described can be successfully run regardless of whether the initial token was generated using just the simple Client Credentials or Client Credential AND User credentials e.g. Authorization Code Flow, Implicit Flow, Password Credentials etc. In both cases, no user credentials is required for token refresh  - only the `clientId`, and optionally `clientSecret` is required. If the Client App was registered without `clientSecret`, it is not required. 
+This is a longer-lived “renewal pass”.
 
-### Python
+### Common ways to get an initial access token
+1) Client Credentials Flow (machine-to-machine)
 
-There are three example scenarios:
-1. Example of using `Authorization_code` grant type -  See `example.py`
-       Note: Please remember to set up callback/redirect urls properly.
-2. Example of refreshing the existing access token when expired - See `token_refresh.py`
-3. Example of using `Client_credentials` grant type - See `Client_credential_example/token_refresh.py`
+This is used when a system/service is calling an API without a user involved. So, no details about the user is provided.
 
-Use command token_refresh -h for help. 
- - Example usage CAS Prod: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
- - Example usage CAS Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-test.ala.org.au/cas/oidc/oidcAccessToken --clientId replaceMe --clientSecret replaceMe`
- - Example usage Cognito Test: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token --clientId replaceMe --clientSecret replaceMe`
- - Example usage Cognito Test without client secret: `python3 python/token_refresh.py --file ./keys_example.json --tokenUrl https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token --clientId replaceMe`
+2) Authorization Code Flow (with user login)
 
-### Groovy
+This is used when a real person is logging in (web apps, native apps). The user is redirected to the login page and signs in.
+
+This flow often returns: access_token and refresh_token.
+
+PKCE Method(for public apps): Some apps can’t safely store a client secret (e.g., mobile apps). PKCE is an extra protection layer used with Authorization Code Flow so the app can securely exchange the code without needing a client secret.
+
+### Refreshing tokens
+
+When an access token expires, the application can request a new one from the token endpoint (tokenUrl) without asking the user to log in again, as long as it has a valid refresh token.
+
+What is required to refresh a token:
+* `grant_type=refresh_token`
+* refresh_token (from the initial token response)
+* scope
+* client_id
+* client_secret (only if your client has one)
+
+This project provides examples of generating and refreshing tokens, along with API usage samples in multiple languages including R, Python, and Groovy. These examples are intended to help you understand how token creation and refresh work in practice.

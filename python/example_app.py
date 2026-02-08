@@ -19,8 +19,8 @@ authorize_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth
 token_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/token"
 logout_url = "https://auth-secure.auth.ap-southeast-2.amazoncognito.com/logout"
 
-client_id = "" # Replace this with your_public_clientid
-app.secret_key = 'your_secret_key'  # Replace with yoursecret key - Not required for Public Client (Client-side Application)
+client_id = "urk4joh9uui18p27n9s9b0mu7" # Replace this with your_public_clientid
+app.secret_key = ''  # Replace with yoursecret key - Not required for Public Client (Client-side Application)
 redirect_uri = "http://localhost:8080/callback"  # Replace with your redirect URI
 home_uri = "http://localhost:8080"
 logout_endpoint = "http://localhost:8080/callback"  # Replace with your redirect URI
@@ -125,7 +125,7 @@ def callback():
             expires_in = auth_response.get('expires_in', 'N/A')
 
             # Step 4: Use the access token to make API requests
-            api_url = "https://api.test.ala.org.au/occurrences/occurrences/offline/status"
+            api_url = "https://api.ala.org.au/occurrences/occurrences/offline/status"
             headers = {
                 'Accept': 'application/json',
                 'Authorization': f'Bearer {access_token}',
@@ -201,7 +201,7 @@ def callback():
         <hr>
         <h5>ⓘ Use the following cURL command to access the secure ALA API and check the status of the Download Queue.:</h5>
         <pre>
-curl -X GET "https://api.test.ala.org.au/occurrences/occurrences/offline/status/all" \
+curl -X GET "https://api.ala.org.au/occurrences/occurrences/offline/status/all" \
 -H "Accept: application/json" \
 -H "Authorization: Bearer {{ access_token }}"
         </pre>

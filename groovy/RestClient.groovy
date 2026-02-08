@@ -339,7 +339,7 @@ public get_token(config, keys) {
 
 public read_token_file(){
 
-    String jsonStr = new File('../keys_example.json').text
+    String jsonStr = new File('keys_example.json').text
     def jsonSlurper = new JsonSlurper()
     def keys = jsonSlurper.parseText(jsonStr)
 

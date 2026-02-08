@@ -1,5 +1,5 @@
-# This R example shows how to generate a JWT and use it when invoking an API.
-# Fill Client Id and Gateway API key.
+# This R example shows how to generate a JWT and use it when invoking a Galah (common) API.
+# Fill Client Id and Gateway API key will be retrieved via api.
 # Change authorize and access endpoints according to the environment.
 
 library(httr)

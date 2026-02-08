@@ -1,0 +1,20 @@
+2026-02-06 15:03:12 [INFO]: *********************************
+2026-02-06 15:03:12 [INFO]: ⓘ Welcome to ALA example Python app
+2026-02-06 15:03:12 [INFO]: ⓘ Demonstrates how to use OAuth2 for authentication and API authorization
+2026-02-06 15:03:12 [INFO]: ⓘ Supports Native ALA login with / without MFA, as well as AAF, Google, Apple, and IdP MFA authentication
+2026-02-06 15:03:12 [INFO]: *********************************
+2026-02-06 15:03:15 [INFO]: Opening browser for authentication
+2026-02-06 15:03:15 [INFO]: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:8080
+2026-02-06 15:03:15 [INFO]: [33mPress CTRL+C to quit[0m
+2026-02-06 15:03:16 [INFO]: Enter your ALA credentials in the browser
+2026-02-06 15:03:16 [INFO]: ******Home URL: http://localhost:8080**************
+2026-02-06 15:03:16 [INFO]: ******Auth URL: https://auth-secure.auth.ap-southeast-2.amazoncognito.com/oauth2/authorize?response_type=code&client_id=urk4joh9uui18p27n9s9b0mu7&redirect_uri=http://localhost:8080/callback&scope=openid profile email ala/attrs ala/roles**************
+2026-02-06 15:03:16 [INFO]: 127.0.0.1 - - [06/Feb/2026 15:03:16] "[32mGET / HTTP/1.1[0m" 302 -
+2026-02-06 15:03:16 [INFO]: **********Authentication in progress**************
+2026-02-06 15:03:17 [INFO]: ***************Response.status_code: 200
+2026-02-06 15:03:17 [INFO]: ************Request Restricted API Webservice: https://api.test.ala.org.au/occurrences/occurrences/offline/status***********
+2026-02-06 15:03:20 [INFO]: ************API Response code: 200
+2026-02-06 15:03:20 [INFO]: 127.0.0.1 - - [06/Feb/2026 15:03:20] "GET /callback?code=71957466-2c4a-4366-bc82-8bf3ce4dfa56 HTTP/1.1" 200 -
+2026-02-06 15:03:38 [INFO]: Opening browser for authentication
+2026-02-06 15:03:38 [INFO]: 127.0.0.1 - - [06/Feb/2026 15:03:38] "POST /logout HTTP/1.1" 200 -

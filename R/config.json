@@ -1,0 +1,9 @@
+{
+  "client_id": "",
+  "client_secret": "",
+  "authorize_url": "https://auth.ala.org.au/cas/oidc/oidcAuthorize",
+  "token_url": "https://auth.ala.org.au/cas/oidc/oidcAccessToken",
+  "scopes": "openid profile email roles",
+  "redirect_uri": "http://localhost:1410/",
+  "refresh_token": ""
+}
