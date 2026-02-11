@@ -23,8 +23,7 @@ def read_token_file(filepath):
 
 
 def get_token(cfg):
-    payload = {'refresh_token': cfg["refresh_token"], 'grant_type': 'client_credentials', 'scope': cfg["scopes"],
-        'client_id':cfg["client_id"], 'client_secret':cfg["client_secret"]}
+    payload = {'grant_type': 'client_credentials', 'scope': cfg["scopes"], 'client_id':cfg["client_id"], 'client_secret':cfg["client_secret"]}
 
     r = requests.post(cfg["token_url"], data=payload)
 
